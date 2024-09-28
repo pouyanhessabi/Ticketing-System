@@ -15,10 +15,10 @@ def login():
 
 @auth.route('/login', methods=['POST'])
 def login_post():
-    email = request.form.get('email')
+    name = request.form.get('name')
     password = request.form.get('password')
     remember = True if request.form.get('remember') else False
-    user = User.query.filter_by(email=email).first()
+    user = User.query.filter_by(name=name).first()
 
     if not user:
         flash('Please check your login details and try again.')
@@ -34,18 +34,16 @@ def signup():
 
 @auth.route('/signup', methods=['POST'])
 def signup_post():
-    email = request.form.get('email')
     name = request.form.get('name')
     password = request.form.get('password')
     # try:
-    user = User.query.filter_by(
-        email=email).first()
+    user = User.query.filter_by(name=name).first()
 
     if user:
-        flash('Email address already exists')
+        flash('Name already exists')
         return redirect(url_for('auth.signup'))
 
-    new_user = User(email=email, name=name, password=password)
+    new_user = User(name=name, password=password)
     # add the new user to the database
     from . import db
     db.session.add(new_user)

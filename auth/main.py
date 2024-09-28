@@ -14,9 +14,5 @@ def index():
 @main.route('/profile')
 @login_required
 def profile():
-    return render_template('profile.html', name=current_user.name)
-
-
-@main.route('/about')
-def about():
-    return render_template('about.html')
+    return render_template('profile.html', name=current_user.name, id=current_user.id, phone=current_user.phone,
+                           address=current_user.address, creation_date=current_user.creation_date)

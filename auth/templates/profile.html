@@ -3,11 +3,18 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div style="width: 100%; text-align: center; padding: 10px 0px 0px 10px"><img style="border-radius: 15%"
-                                                                              src="../static/Healthcare.jpg"
-                                                                              alt="Healthcare" width="900" height="400">
-    <<p><br><br></p></div>
-<h1 class="title">
-    Welcome, {{ name }}!
+<h1 class="title" style="color: #c0116a;font-size: 35px">
+    Hello {{name}}! 👋<br>
 </h1>
+
+
+<p style="font-size: 25px;color: #860b4a">
+    Here is your information:<br>
+</p>
+<p>
+    ID: {{id}}<br>
+    Phone: {{phone}}<br>
+    Address: {{address}}<br>
+    Registration Date: {{creation_date}}
+</p>
 {% endblock %}
