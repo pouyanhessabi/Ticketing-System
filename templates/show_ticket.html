@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h1 class="title">Submitted Successfully</h1>
+    <p class="subtitle" style="color: #c0116a;font-size: 35px">Your ticket has been submitted successfully!</p>
+
+    <div class="box">
+        <h2 class="subtitle">Ticket Details:</h2>
+        <p><strong>Description:</strong> {{ description }}</p>
+        <p><strong>Type:</strong> {{ type }}</p>
+    </div>
+
+    <div class="field">
+        <div class="control">
+            <a href="{{ url_for('main.index') }}" class="button is-link">Back to Home</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
