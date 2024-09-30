@@ -2,9 +2,13 @@
 
 {% block content %}
 <div class="container">
-    <p class="subtitle" style="color: #9a0e55;font-size: 35px;font-family: 'Comic Sans MS',serif;font-weight: bold">
+    <p class="subtitle" style="color: #cb106f;font-size: 35px;font-family: 'Comic Sans MS',serif;font-weight: bold">
         {{message}}</p>
-
+    {% if message == "" %}
+    <p class="subtitle"
+       style="color: rgba(1,152,1,0.91);font-size: 35px;font-family: 'Comic Sans MS',serif;font-weight: bold">
+        The ticket has been added successfully. Here is the new ticket information:</p>
+    {% endif %}
     <div class="box">
         <h2 class="subtitle" style="color: darkblue;font-weight: bold">Ticket Details:</h2>
         <p><strong>Ticket ID:</strong> {{ id }}</p>

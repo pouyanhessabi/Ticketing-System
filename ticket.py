@@ -1,32 +1,24 @@
-import mysql.connector
+from mysql.connector import connect
 
 from .exceptions import HasActiveTicketException
 from .model import Ticket
-
-mysql_db = mysql.connector.connect(
-    host='localhost',
-    user='root',
-    database='snappfood'
-)
 
 # if the ticket is not active it should be 0
 IS_ACTIVE = 1
 
 
-def load_user_by_id(user_id):
-    where_data = (user_id,)
-    my_cursor = mysql_db.cursor()
-    my_cursor.execute('select * from client where ID = %s', where_data)
-    user = my_cursor.fetchall()
-    return user
-
-
 def show_last_active_ticket(user_id):
     where_data = (user_id, IS_ACTIVE)
-    my_cursor = mysql_db.cursor()
-    my_cursor.execute('select * from ticket where client_id = %s and is_active = %s order by creation_date DESC',
-                      where_data)
-    tickets = my_cursor.fetchall()
+    mysql_db = connect(
+        host='localhost',
+        user='root',
+        database='snappfood'
+    )
+
+    cursor = mysql_db.cursor()
+    cursor.execute('select * from ticket where client_id = %s and is_active = %s order by creation_date DESC',
+                   where_data)
+    tickets = cursor.fetchall()
     if tickets:
         return generate_ticket_from_query(tickets[0])
     else:
@@ -40,7 +32,6 @@ def add_ticket(ticket: Ticket):
         raise HasActiveTicketException(last_active_ticket)
     else:
         save_ticket_to_db(ticket)
-        # return the added ticket after inserting to the database
         print(f"New Ticket ID: {ticket.id}")
         return ticket.id
 

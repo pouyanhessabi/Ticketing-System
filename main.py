@@ -51,7 +51,6 @@ def add_ticket_req():
 
     # Successfully Added
     return render_template('show_ticket.html',
-                           message="The ticket added successfully. Here is the new ticket information:",
-                           id=new_ticket.id, description=new_ticket.description, type=new_ticket.type,
+                           message="", id=new_ticket.id, description=new_ticket.description, type=new_ticket.type,
                            is_active=new_ticket.is_active, user_id=new_ticket.client_id,
                            creation_date=new_ticket.creation_date)
