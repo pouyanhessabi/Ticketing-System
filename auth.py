@@ -1,4 +1,3 @@
-# auth.py
 
 from flask import Blueprint, render_template, redirect, url_for, request, flash
 from flask_login import login_user, logout_user, login_required
@@ -36,14 +35,15 @@ def signup():
 def signup_post():
     name = request.form.get('name')
     password = request.form.get('password')
-    # try:
     user = User.query.filter_by(name=name).first()
 
     if user:
         flash('Name already exists')
         return redirect(url_for('auth.signup'))
 
-    new_user = User(name=name, password=password)
+    new_user = User()
+    new_user.name = name
+    new_user.password = password
     # add the new user to the database
     from . import db
     db.session.add(new_user)
