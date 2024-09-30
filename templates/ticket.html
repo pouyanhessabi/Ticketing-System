@@ -1,0 +1,37 @@
+<!-- templates/ticket.html -->
+
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <h1 class="title" style="color: #c0116a;font-size: 35px">Submit a Ticket</h1>
+    <form action="{{ url_for('main.ticket') }}" method="POST">
+        <div class="field">
+            <label class="label">Description</label>
+            <div class="control">
+                <textarea class="textarea" name="description"
+                          placeholder="Describe your issue or request..."></textarea>
+            </div>
+        </div>
+
+        <div class="field">
+            <label class="label">Type</label>
+            <div class="control">
+                <div class="select">
+                    <select name="type">
+                        <option value="support">Support</option>
+                        <option value="bug">Bug</option>
+                        <option value="feature">Feature</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="field">
+            <div class="control">
+                <button class="button is-primary" type="submit">Submit Ticket</button>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}

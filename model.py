@@ -18,7 +18,6 @@ class Ticket(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     description = db.Column(db.String(1000))
     type = db.Column(db.String(100))
-    # Todo: check Boolean
     is_active = db.Column(db.Boolean)
     client_id = db.Column(db.String(100))
     creation_date = db.Column(db.Date)
