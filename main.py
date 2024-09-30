@@ -28,7 +28,7 @@ def ticket():
 
 
 @main.route('/ticket', methods=['POST'])
-def add_ticket_req():
+async def add_ticket_req():
     description = request.form.getlist('description')[0]
     issue_type = request.form.getlist('type')[0]
     print(f"description is {description}, issue_type is {issue_type}")
@@ -41,7 +41,7 @@ def add_ticket_req():
     new_ticket.creation_date = date.today()
 
     try:
-        new_ticket.id = add_ticket(new_ticket)
+        new_ticket.id = await add_ticket(new_ticket)
 
     except HasActiveTicketException as e:
         return render_template('show_ticket.html', message=e.message, id=e.ticket.id, description=e.ticket.description,

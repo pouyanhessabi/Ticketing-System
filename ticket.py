@@ -1,3 +1,5 @@
+import asyncio
+
 from mysql.connector import connect
 
 from .exceptions import HasActiveTicketException
@@ -25,7 +27,8 @@ def show_last_active_ticket(user_id):
         return []
 
 
-def add_ticket(ticket: Ticket):
+async def add_ticket(ticket: Ticket):
+    await asyncio.sleep(2)
     last_active_ticket = show_last_active_ticket(ticket.client_id)
     if last_active_ticket:
         print("Can't add new ticket because of having an active ticket")
