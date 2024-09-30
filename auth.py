@@ -1,3 +1,4 @@
+from datetime import date
 
 from flask import Blueprint, render_template, redirect, url_for, request, flash
 from flask_login import login_user, logout_user, login_required
@@ -34,7 +35,12 @@ def signup():
 @auth.route('/signup', methods=['POST'])
 def signup_post():
     name = request.form.get('name')
+    if not name:
+        flash('Name field can not be empty')
+        return redirect(url_for('auth.signup'))
     password = request.form.get('password')
+    phone = request.form.get('phone')
+    address = request.form.get('address')
     user = User.query.filter_by(name=name).first()
 
     if user:
@@ -44,6 +50,9 @@ def signup_post():
     new_user = User()
     new_user.name = name
     new_user.password = password
+    new_user.phone = phone
+    new_user.address = address
+    new_user.creation_date = date.today()
     # add the new user to the database
     from . import db
     db.session.add(new_user)

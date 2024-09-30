@@ -2,13 +2,17 @@
 
 {% block content %}
 <div class="container">
-    <h1 class="title">Submitted Successfully</h1>
-    <p class="subtitle" style="color: #c0116a;font-size: 35px">Your ticket has been submitted successfully!</p>
+    <p class="subtitle" style="color: #9a0e55;font-size: 35px;font-family: 'Comic Sans MS',serif;font-weight: bold">
+        {{message}}</p>
 
     <div class="box">
-        <h2 class="subtitle">Ticket Details:</h2>
+        <h2 class="subtitle" style="color: darkblue;font-weight: bold">Ticket Details:</h2>
+        <p><strong>Ticket ID:</strong> {{ id }}</p>
         <p><strong>Description:</strong> {{ description }}</p>
         <p><strong>Type:</strong> {{ type }}</p>
+        <p><strong>Is Active:</strong> {{ is_active }}</p>
+        <p><strong>User ID:</strong> {{ user_id }}</p>
+        <p><strong>Creation Date:</strong> {{ creation_date }}</p>
     </div>
 
     <div class="field">
