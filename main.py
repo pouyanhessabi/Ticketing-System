@@ -1,6 +1,6 @@
 from datetime import date
 
-from flask import Blueprint, render_template, request, session
+from flask import Blueprint, render_template, request, session, jsonify
 from flask_login import login_required, current_user
 
 from .exceptions import HasActiveTicketException, JiraException
@@ -24,13 +24,13 @@ def profile():
                            address=current_user.address, creation_date=current_user.creation_date)
 
 
-@main.route('/ticket')
-def ticket():
-    return render_template('ticket.html')
+@main.route('/ticket_form')
+def ticket_form():
+    return render_template('ticket_form.html')
 
 
 @main.route('/ticket', methods=['POST'])
-async def add_ticket_req():
+async def create_ticket():
     description = request.form.getlist('description')[0]
     issue_type = request.form.getlist('type')[0]
     print(f"description is {description}, issue_type is {issue_type}")
@@ -54,17 +54,22 @@ async def add_ticket_req():
         #                                         new_ticket.creation_date)
 
     except HasActiveTicketException as e:
-        return render_template('show_ticket.html', message=e.message, id=e.ticket.id, description=e.ticket.description,
-                               type=e.ticket.type,
-                               is_active=e.ticket.is_active, user_id=e.ticket.client_id,
-                               creation_date=e.ticket.creation_date)
+        return render_template('show_ticket.html', message=e.message, ticket=e.ticket.to_dict())
     except JiraException as exception:
-        return render_template('ticket.html', error_message=exception)
+        return render_template('ticket_form.html', error_message=exception)
     except Exception as other_exception:
         print(other_exception)
-        return render_template('ticket.html', error_message=other_exception)
+        return render_template('ticket_form.html', error_message=other_exception)
+
     # Successfully Added
-    return render_template('show_ticket.html',
-                           message="", id=new_ticket.id, description=new_ticket.description, type=new_ticket.type,
-                           is_active=new_ticket.is_active, user_id=new_ticket.client_id,
-                           creation_date=new_ticket.creation_date)
+    return render_template('show_ticket.html', message="", ticket=new_ticket.to_dict())
+
+
+@main.route('/ticket/api', methods=['GET'])
+def get_tickets():
+    user_id = session.get("_user_id")
+    if not user_id:
+        return jsonify({"error": "User not authenticated"}), 401
+    tickets = Ticket.query.filter_by(client_id=user_id).all()
+    print(f"all user tickets with this id : {user_id} are {tickets}")
+    return jsonify([ticket.to_dict() for ticket in tickets])

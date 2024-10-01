@@ -44,8 +44,11 @@
                         </a>
                         {% endif %}
                         {% if current_user.is_authenticated %}
-                        <a href="{{ url_for('main.ticket') }}" class="navbar-item">
-                            Ticket
+                        <a href="{{ url_for('main.ticket_form') }}" class="navbar-item">
+                            Create Ticket
+                        </a>
+                        <a href="{{ url_for('main.get_tickets') }}" class="navbar-item">
+                            All User's Tickets
                         </a>
                         <a href="{{ url_for('auth.logout') }}" class="navbar-item">
                             Logout

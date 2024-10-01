@@ -21,3 +21,13 @@ class Ticket(UserMixin, db.Model):
     is_active = db.Column(db.Boolean)
     client_id = db.Column(db.String(100))
     creation_date = db.Column(db.Date)
+
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "description": self.description,
+            "type": self.type,
+            "is_active": self.is_active,
+            "client_id": self.client_id,
+            "creation_date": self.creation_date
+        }

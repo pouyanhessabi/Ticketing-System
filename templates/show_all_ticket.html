@@ -1,6 +1,30 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <title>AJAX Example</title>-->
 {% extends "base.html" %}
 
 {% block content %}
+<script>
+    // Function to display tickets
+    function displayTickets(tickets) {
+        const ticketsContainer = document.getElementById('tickets');
+        ticketsContainer.innerHTML = ''; // Clear previous content
+
+        if (tickets.length === 0) {
+            ticketsContainer.innerHTML = '<p>No tickets found.</p>';
+            return;
+        }
+
+        tickets.forEach(ticket => {
+            const ticketElement = document.createElement('div');
+            ticketElement.innerText = `ID: ${ticket.id}, Description: ${ticket.description}, Type: ${ticket.type},Client ID: ${ticket.client_id}, Creation Date: ${ticket.creation_date}`;
+            ticketsContainer.appendChild(ticketElement);
+        });
+    }
+</script>
 <div class="container">
     <p class="subtitle" style="color: #cb106f;font-size: 35px;font-family: 'Comic Sans MS',serif;font-weight: bold">
         {{message}}</p>
@@ -25,4 +49,6 @@
         </div>
     </div>
 </div>
+
 {% endblock %}
+
