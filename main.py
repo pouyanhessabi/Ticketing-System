@@ -42,6 +42,14 @@ async def add_ticket_req():
 
     try:
         new_ticket.id = await add_ticket(new_ticket)
+        # jira_instance = JiraInstance()
+        # issue_data = {
+        #     "project": {"key": "<YOUR_PROJECT_KEY>"},
+        #     "summary": "New issue created via Python",
+        #     "description": "This is a sample issue created using Python script.",
+        #     "issuetype": {"name": "Task"},
+        # }
+        # jira_instance.create_issue(issue_data)
 
     except HasActiveTicketException as e:
         return render_template('show_ticket.html', message=e.message, id=e.ticket.id, description=e.ticket.description,
