@@ -52,7 +52,7 @@ async def add_ticket(ticket: Ticket):
         raise HasActiveTicketException(last_active_ticket)
     else:
         save_ticket_to_db(ticket)
-        print(f"New Ticket ID: {ticket.id}")
+        print(f"New Ticket Has Created, ID: {ticket.id}")
         return ticket.id
 
 
