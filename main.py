@@ -4,6 +4,7 @@ from flask import Blueprint, render_template, request, session
 from flask_login import login_required, current_user
 
 from .exceptions import HasActiveTicketException
+from .jira_actions import JiraInstance
 from .model import Ticket
 from .ticket import add_ticket
 
@@ -42,21 +43,18 @@ async def add_ticket_req():
 
     try:
         new_ticket.id = await add_ticket(new_ticket)
-        # jira_instance = JiraInstance()
-        # issue_data = {
-        #     "project": {"key": "<YOUR_PROJECT_KEY>"},
-        #     "summary": "New issue created via Python",
-        #     "description": "This is a sample issue created using Python script.",
-        #     "issuetype": {"name": "Task"},
-        # }
-        # jira_instance.create_issue(issue_data)
+        # Creating jira issue
+        jira_instance = JiraInstance()
+        jira_instance.create_issue_from_backend(description, new_ticket.client_id, issue_type, new_ticket.creation_date)
 
     except HasActiveTicketException as e:
         return render_template('show_ticket.html', message=e.message, id=e.ticket.id, description=e.ticket.description,
                                type=e.ticket.type,
                                is_active=e.ticket.is_active, user_id=e.ticket.client_id,
                                creation_date=e.ticket.creation_date)
-
+    except Exception as exception:
+        print(exception)
+        return render_template('ticket.html', error_message=exception)
     # Successfully Added
     return render_template('show_ticket.html',
                            message="", id=new_ticket.id, description=new_ticket.description, type=new_ticket.type,

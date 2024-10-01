@@ -18,14 +18,13 @@ def show_last_active_ticket(user_id):
     Returns:
     tuple or None: The last active ticket of the user. If there is no active ticket for the user, it returns None.
     """
-    where_data = (user_id, IS_ACTIVE)
     mysql_db = connect(
         host='localhost',
         user='root',
         database='snappfood'
     )
-
     cursor = mysql_db.cursor()
+    where_data = (user_id, IS_ACTIVE)
     cursor.execute('select * from ticket where client_id = %s and is_active = %s order by creation_date DESC',
                    where_data)
     tickets = cursor.fetchall()

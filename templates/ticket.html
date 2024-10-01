@@ -2,6 +2,11 @@
 
 {% block content %}
 <div class="container">
+    {% if error_message %}
+    <p class="subtitle"
+       style="color: rgb(252,0,0);font-size: 35px;font-family: 'Comic Sans MS',serif;font-weight: bold">
+        An error occurred: {{error_message}}</p>
+    {% endif %}
     <h1 class="title" style="color: #cb106f;font-size: 35px">Submit a Ticket</h1>
     <form action="{{ url_for('main.ticket') }}" method="POST">
         <div class="field">
