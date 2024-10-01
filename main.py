@@ -5,7 +5,9 @@ from flask_login import login_required, current_user
 
 from .exceptions import HasActiveTicketException, JiraException
 from .model import Ticket
-from .ticket import add_ticket
+from .ticket import add_ticket, check_active_ticket_db
+
+# from .jira_actions import JiraInstance, load_issue_by_user_and_status
 
 main = Blueprint('main', __name__)
 
@@ -41,10 +43,13 @@ async def add_ticket_req():
     new_ticket.creation_date = date.today()
 
     try:
-        new_ticket.id = await add_ticket(new_ticket)
-        # Creating jira issue
+        await check_active_ticket_db(new_ticket)
         # Todo: check with real jira, then uncomment
+        # Creating jira instance
         # jira_instance = JiraInstance()
+        # load_issue_by_user_and_status(jira_instance, new_ticket.client_id, new_ticket.type)
+        new_ticket.id = add_ticket(new_ticket)
+        # Creating jira issue
         # jira_instance.create_issue_from_backend(description, new_ticket.client_id, issue_type,
         #                                         new_ticket.creation_date)
 

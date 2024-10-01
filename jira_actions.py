@@ -1,6 +1,6 @@
 from jira import JIRA
 
-from .exceptions import JiraException
+from .exceptions import JiraException, ActiveJiraIssue
 
 JIRA_BASE_URL = "<JIRA_BASE_URL>"
 PERSONAL_ACCESS_TOKEN = "<YOUR-PERSONAL-ACCESS-TOKEN>"
@@ -48,3 +48,20 @@ class JiraInstance:
             self.create_new_issue(issue_data)
         except Exception as e:
             raise JiraException
+
+
+def load_issue_by_user_and_status(jira_instance, user, status):
+    try:
+        issues = jira_instance.jira.search_issues(f'assignee = {user} AND status = {status}')
+        if issues:
+            print(f"In Jira Actions, The user is {user} and the status is {status}")
+            raise ActiveJiraIssue
+        else:
+            return issues
+    except ActiveJiraIssue as e:
+        print(e)
+        raise JiraException
+
+    except Exception as other_jira_exception:
+        print(other_jira_exception)
+        raise JiraException

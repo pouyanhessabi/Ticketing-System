@@ -9,3 +9,9 @@ class JiraException(Exception):
     def __init__(self):
         self.message = "Problem with Jira"
         super().__init__(self.message)
+
+
+class ActiveJiraIssue(Exception):
+    def __init__(self):
+        self.message = "This user has an active Jira issue"
+        super().__init__(self.message)

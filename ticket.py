@@ -34,26 +34,10 @@ def show_last_active_ticket(user_id):
         return []
 
 
-async def add_ticket(ticket: Ticket):
-    """
-    Asynchronous function to add a new ticket to the database.
-    If there is already an active ticket for the same user, it raises a HasActiveTicketException.
-
-    Args:
-    ticket (Ticket): The ticket to be added
-
-    Returns:
-    int: The id of the newly added ticket
-    """
-    await asyncio.sleep(1)
-    last_active_ticket = show_last_active_ticket(ticket.client_id)
-    if last_active_ticket:
-        print("Can't add new ticket because of having an active ticket")
-        raise HasActiveTicketException(last_active_ticket)
-    else:
-        save_ticket_to_db(ticket)
-        print(f"New Ticket Has Created, ID: {ticket.id}")
-        return ticket.id
+def add_ticket(ticket: Ticket):
+    save_ticket_to_db(ticket)
+    print(f"New Ticket Has Created, ID: {ticket.id}")
+    return ticket.id
 
 
 def save_ticket_to_db(ticket: Ticket):
@@ -71,3 +55,11 @@ def generate_ticket_from_query(query: tuple):
     ticket.client_id = query[4]
     ticket.creation_date = query[5]
     return ticket
+
+
+async def check_active_ticket_db(ticket: Ticket):
+    await asyncio.sleep(1)
+    last_active_ticket = show_last_active_ticket(ticket.client_id)
+    if last_active_ticket:
+        print("Can't add new ticket because of having an active ticket")
+        raise HasActiveTicketException(last_active_ticket)
