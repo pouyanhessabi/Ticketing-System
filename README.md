@@ -1,26 +1,26 @@
 # Ticketing System
-The Ticketing System repository on GitHub implements a basic ticketing system using Python, flask framework and HTML and Restful API. Here are the key features and components of the system:
+The Ticketing System implements a basic issue management system using Python, flask framework, HTML, and Restful API. Here are the key features and components of the system:
 
 # Overview
 Purpose: The system is designed to manage tickets, which could pertain to customer support or issue tracking.
-Technologies Used:
-Python: Main programming language for backend logic.
+## Technologies Used:
+Python and flask: Main programming language for backend logic.
 HTML: Used for creating the user interface.
 # Key Components
 ## Files and Structure:
-main.py: Likely the main entry point for the application.
-auth.py: Handles authentication functionality.
-model.py: Contains data models used in the application.
-ticket.py: Manages ticket-related operations.
-jira_actions.py: Possibly integrates with JIRA for ticket management.
-exceptions.py: Defines custom exceptions for better error handling.
+main.py: Likely the main entry point for the application. <br>
+auth.py: Handles authentication functionality. <br>
+model.py: Contains data models used in the application. <br>
+ticket.py: Manages ticket-related operations. <br>
+jira_actions.py: Possibly integrates with JIRA for ticket management. <br>
+exceptions.py: Defines custom exceptions for better error handling. <br>
 static and templates: Directories for static files (CSS, JS) and HTML templates, respectively.
 ## Database:
 The system may utilize a database, as indicated by the presence of a .sql file (snappfood.sql), which suggests it configures the database schema.
 # Functionality:
-Users can create, view, and manage tickets.
-Authentication for users to secure the system.
-Integration capabilities with other platforms (like JIRA).
+- Users can create, view, and manage tickets.
+- Authentication for users to secure the system.
+- Integration capabilities with other platforms (like JIRA).
 # Usage
-The system is structured to facilitate user interaction through web-based interfaces, allowing for efficient ticket management.
+The system is structured to facilitate user interaction through web-based interfaces, allowing for efficient ticket management. <br>
 This repository serves as a foundational implementation, which can be expanded with additional features based on specific requirements.
