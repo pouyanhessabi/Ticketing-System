@@ -7,6 +7,7 @@ Purpose: The system is designed to manage tickets, which could pertain to custom
 
 # Key Components
 Here is the *flowchart* of the system: <br>
+![Flowchart](https://github.com/pouyanhessabi/Ticketing-System/blob/main/Report/Flow%20Chart%20Ticketing%20System.jpg)
 
 ### Technologies Used:
 `Python` and `Flask`: Main programming language for backend logic. <br>
@@ -27,16 +28,22 @@ Here is the *flowchart* of the system: <br>
 - static and templates: Directories for static files (CSS, JS) and HTML templates, respectively.
 ### Database:
 The system may utilize a database, as indicated by the presence of a .sql file (snappfood.sql), which suggests it configures the database schema. The database consists of two tables, client and ticket, with this structure: <br>
-
+![Tables](https://github.com/pouyanhessabi/Ticketing-System/blob/main/Report/Tables.jpg)
 # User Interface
-### HTML Files:
+In this section you will see the pages and HTML files purpose.
+### Home
 - base.html: This is the main template that provides a common structure and layout for all other HTML files, including shared navigation and styling elements.
-- index.html: Acts as the homepage of the application, offering an overview and links to other sections of the ticketing system.
-**Authentication:** <br>
-- signup.html: Provides a registration form for new users to create an account within the ticketing system.
+- index.html: Acts as the homepage of the application, offering an overview and links to other sections of the ticketing system. <br><br>
+![Home](https://github.com/pouyanhessabi/Ticketing-System/blob/main/Report/UI/Home.jpg)
+### Authentication
+- signup.html: Provides a registration form for new users to create an account within the ticketing system. <br><br>
+![Signup](https://github.com/pouyanhessabi/Ticketing-System/blob/main/Report/UI/Sign%20Up.jpg)
 - login.html: Contains the login form for user authentication, allowing users to enter their credentials to access the system.
-- profile.html: Displays the user's profile information and allows for viewing and editing personal details.
-**Ticketing:** <br>
-- ticket_form.html: Features a form for users to submit new tickets, allowing them to input necessary details and categorize their issues.
+- profile.html: Displays the user's profile information and allows for viewing and editing personal details. <br><br>
+![Profile](https://github.com/pouyanhessabi/Ticketing-System/blob/main/Report/UI/Profile.jpg)
+### Ticketing
+- ticket_form.html: Features a form for users to submit new tickets, allowing them to input necessary details and categorize their issues. <br><br>
+![Ticket Form](https://github.com/pouyanhessabi/Ticketing-System/blob/main/Report/UI/Ticket%20Form.jpg)
 - show_all_ticket.html: Lists all tickets in the system, providing users with an overview of existing tickets and their statuses.
-- show_ticket.html: Displays detailed information about a specific ticket, including its description, status, and any related comments.
+- show_ticket.html: Displays detailed information about a specific ticket, including its description, status, and any related comments. <br>
+![Show Ticket](https://github.com/pouyanhessabi/Ticketing-System/blob/main/Report/UI/Ticket%20Created.jpg)
