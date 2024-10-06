@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 30, 2024 at 10:16 PM
+-- Generation Time: Oct 06, 2024 at 06:47 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.2
 
@@ -40,10 +40,6 @@ CREATE TABLE `client`
   DEFAULT CHARSET = utf8mb4;
 
 --
--- RELATIONSHIPS FOR TABLE `client`:
---
-
---
 -- Dumping data for table `client`
 --
 
@@ -69,7 +65,8 @@ VALUES (1, 'Pouyan Hessabi', '123-456-7890', '123 Elm St, Springfield', '2023-09
        (19, 'Hamid', '666-777-8888', '1616 Redwood Dr, Ogdenville', '2023-09-19', ''),
        (20, 'Javad', '777-888-9999', '1717 Dogwood Ave, North Haverbrook', '2023-09-20', ''),
        (26, 'pouyan.hessabi@gmail.com', '', '', '2024-09-30', '123'),
-       (27, 'zccxx', '', '', '2024-09-30', '123');
+       (27, 'zccxx', '', '', '2024-09-30', '123'),
+       (28, 'test', '', '', '2024-10-01', '');
 
 -- --------------------------------------------------------
 
@@ -89,12 +86,6 @@ CREATE TABLE `ticket`
   DEFAULT CHARSET = utf8mb4;
 
 --
--- RELATIONSHIPS FOR TABLE `ticket`:
---   `client_id`
---       `client` -> `ID`
---
-
---
 -- Dumping data for table `ticket`
 --
 
@@ -109,9 +100,6 @@ VALUES (1, 'Issue with login', 'bug', 1, 1, '2023-09-01'),
        (8, 'Suggestion for improving UI', 'feature', 0, 8, '2023-09-08'),
        (9, 'Application crash on load', 'bug', 1, 9, '2023-09-09'),
        (10, 'Problem with data export', 'bug', 1, 10, '2023-09-10'),
-       (11, 'Question about security features', 'support', 0, 11, '2023-09-11'),
-       (12, 'Feature request for advanced search', 'feature', 0, 12, '2023-09-12'),
-       (13, 'Unable to download report', 'bug', 0, 13, '2023-09-13'),
        (14, 'Inquiry about API limits', 'support', 0, 14, '2023-09-14'),
        (15, 'Feature request for notifications', 'feature', 0, 15, '2023-09-15'),
        (16, 'Login timeout error', 'bug', 0, 16, '2023-09-16'),
@@ -119,10 +107,12 @@ VALUES (1, 'Issue with login', 'bug', 1, 1, '2023-09-01'),
        (18, 'Request for additional storage', 'support', 0, 18, '2023-09-18'),
        (19, 'Feedback on performance improvements', 'feature', 0, 19, '2023-09-19'),
        (20, 'Support request for account recovery', 'support', 0, 20, '2023-09-20'),
-       (27, 'Mahdi Bug Task', 'bug', 0, 12, '2024-09-30'),
-       (28, 'dfvgx', 'bug', 0, 26, '2024-09-30'),
        (29, 'jczx', 'support', 1, 3, '2024-09-30'),
-       (31, 'czxc', 'support', 1, 6, '2024-09-30');
+       (31, 'czxc', 'support', 1, 6, '2024-09-30'),
+       (40, 'dxg', 'support', 0, 26, '2024-10-01'),
+       (50, 'zc', 'support', 1, 28, '2024-10-01'),
+       (51, 'My bug Ticket', 'bug', 1, 26, '2024-10-01'),
+       (52, 'My New Ticket for Hamid', 'feature', 1, 19, '2024-10-02');
 
 --
 -- Indexes for dumped tables
@@ -151,14 +141,14 @@ ALTER TABLE `ticket`
 --
 ALTER TABLE `client`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,
-  AUTO_INCREMENT = 28;
+  AUTO_INCREMENT = 29;
 
 --
 -- AUTO_INCREMENT for table `ticket`
 --
 ALTER TABLE `ticket`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,
-  AUTO_INCREMENT = 36;
+  AUTO_INCREMENT = 53;
 
 --
 -- Constraints for dumped tables

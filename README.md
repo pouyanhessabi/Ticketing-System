@@ -27,7 +27,8 @@ Here is the *flowchart* of the system: <br>
 - exceptions.py: Defines custom exceptions to improve error handling and provide clearer feedback during application execution.
 - static and templates: Directories for static files (CSS, JS) and HTML templates, respectively.
 ### Database:
-The system may utilize a database, as indicated by the presence of a .sql file (snappfood.sql), which suggests it configures the database schema. The database consists of two tables, client and ticket, with this structure: <br>
+The system may utilize a database, as indicated by the presence of a .sql file (db.sql), which suggests it configures
+the database schema. The database consists of two tables, client and ticket, with this structure: <br>
 ![Tables](https://github.com/pouyanhessabi/Ticketing-System/blob/main/Report/Tables.jpg)
 # User Interface
 In this section you will see the pages and HTML files purpose.
